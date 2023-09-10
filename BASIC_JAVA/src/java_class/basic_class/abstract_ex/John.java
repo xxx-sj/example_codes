@@ -1,8 +1,6 @@
 package java_class.basic_class.abstract_ex;
 
 
-import java_class.basic_class.abstract_ex.job_ex.Warrior;
-
 public class John extends Warrior {
 
     @Override

@@ -1,4 +1,4 @@
-package java_class.basic_class.abstract_ex.job_ex;
+package java_class.basic_class.abstract_ex;
 
 import java_class.basic_class.abstract_ex.Character;
 
