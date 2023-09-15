@@ -1,4 +1,6 @@
-package java_class.collections.list;
+package java_class.collections.list.array_list;
+
+import java_class.collections.list.CustomList;
 
 import java.util.Arrays;
 

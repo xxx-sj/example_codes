@@ -2,10 +2,10 @@ package java_class.collections.list;
 
 
 import java_class.basic_class.TV;
+import java_class.collections.list.array_list.CustomArrayList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
