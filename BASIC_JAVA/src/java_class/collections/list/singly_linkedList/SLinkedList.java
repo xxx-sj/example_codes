@@ -329,7 +329,7 @@ public class SLinkedList<E> implements CustomList<E> {
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void sort(Comparator<? super E> c) {
         Object[] a= this.toArray();
-        Arrays.sort(a.(Comparator) c);
+        Arrays.sort(a, (Comparator) c);
 
 
         int i = 0;
