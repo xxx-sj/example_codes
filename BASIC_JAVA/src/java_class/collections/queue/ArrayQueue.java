@@ -48,4 +48,26 @@ public class ArrayQueue<E> implements Queue<E> {
         front = 0;
         rear = size;
     }
+
+    @Override
+    public boolean offer(E value) {
+
+        /**
+         * rear + 1을 하는 이유는 rear은 현재까지 들어간 요소의 인덱스를 가리키기 때문에
+         * 그 다음 인덱스에 값을 넣기 위해 자리가 있는지 확인하기 위해 rear + 1 을 하게 되는 것
+         *  % array.length 로 나누는 이유는 원형큐로 구현되어있기 때문에 만약
+         *  length = 8, front = 0, rear = 7 인 상태일 때
+         *  rear + 1 을하면 8이된다. 하지만
+         */
+        if((rear + 1) % array.length == front) {
+            resize(array.length * 2);
+        }
+
+        rear = (rear + 1) % array.length;
+
+        array[rear] = value;
+        size++;
+
+        return true;
+    }
 }
