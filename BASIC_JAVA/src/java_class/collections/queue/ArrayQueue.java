@@ -1,5 +1,7 @@
 package java_class.collections.queue;
 
+import java.util.NoSuchElementException;
+
 public class ArrayQueue<E> implements Queue<E> {
 
     private static final int DEFAULT_CAPACITY = 64; //기본 크기
@@ -115,6 +117,50 @@ public class ArrayQueue<E> implements Queue<E> {
         }
 
         return item;
+    }
+
+    public E remove() {
+
+        E item = poll();
+
+        if(item == null) {
+            throw new NoSuchElementException();
+        }
+
+        return item;
+    }
+
+
+    @Override
+    public E peek() {
+
+        if(size == 0) {
+            return null;
+        }
+
+        @SuppressWarnings("unchecked")
+        E item = (E) array[(front + 1) % array.length]; 
+
+        return item;
+    }
+
+    public E element() {
+
+        E item = peek();
+
+        if(item == null) {
+            throw new NoSuchElementException();
+        }
+
+        return item;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
 
