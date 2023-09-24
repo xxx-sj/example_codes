@@ -1,5 +1,7 @@
 package java_class.collections.queue;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 public class ArrayQueue<E> implements Queue<E> {
@@ -163,6 +165,176 @@ public class ArrayQueue<E> implements Queue<E> {
         return size == 0;
     }
 
+    public boolean contains(Object value) {
 
-    
+        int start = (front + 1) % array.length;
+
+        /**
+         * i : 요소 갯수만큼 반복
+         * idx : 원소위치 front + 1 % array.length의 위치로 갱신
+         */
+
+        /**
+         * idx는 현재 존재하는 요소의 위치를 나타내는 index이다.
+         * 증감식에서 idx + 1 % array.length 를 하는 이유는 일반적인 ++이 아니라
+         * 원형큐이기 때문에 %array.lengh 를 하는 것이다.
+         */
+        for(int i = 0, idx = start; i < size; i++, idx =(idx + 1) % array.length) {
+            if(array[idx].equals(value)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * array 데이터를 모두 null로 바꾸고 front , rear를 초기시점 0으로 돌린다.,
+     */
+    public void clear() {
+
+        for(int i = 0; i < array.length; i++) {
+            array[i] = null;
+        }
+
+        front = rear = 0;
+    }
+
+    public Object[] toArray() {
+        return toArray(new Object[size]);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T[] toArray(T[] a) {
+
+        final T[] res;
+
+        // 들어오는 배열의 길이가 큐의 요소 개수보다 작은경우
+        if(a.length < size) {
+            /*
+             * front가 rear보다 앞에 있을 경우 (또는 요소가 없을 경우 f==r)
+             *  ______________________
+             *  |  |  | x | x | x | x |  |
+             *  ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ
+             *    	f               r
+             */
+            if(front <= rear) {
+                return (T[]) Arrays.copyOfRange(array, front + 1, rear + 1, a.getClass());
+            }
+
+            /*
+             * front가 rear보다 뒤에 있을 경우
+             *  ______________________
+             *  | x | x |  |  | x | x | x |
+             *  ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ
+             *    	  r      f
+             */
+            //new size = 5 // size;
+            res = (T[]) Arrays.copyOfRange(array, 0, size, a.getClass());
+            // 7 - 1 - front(3); = 3; // -1을 하는 이유는 index가 0부터 시작하기 때문에 갯수계산을 위해 - 1
+            int rearlength = array.length - 1 - front;	// 뒷 부분의 요소 개수
+
+            // 뒷 부분 복사
+            if(rearlength > 0) {
+                //front + 1 위치부터 시작하여 res배열에 0위치에 rearlength만큼 복사
+                System.arraycopy(array, front + 1, res, 0, rearlength);
+            }
+            // 앞 부분 복사
+            //array배열의 0 위치부터 시작하여 res 배열에 rearlength위치부터 rear+1 길이만큼 복사.
+            System.arraycopy(array, 0, res, rearlength, rear + 1);
+
+            return res;
+
+        }
+
+        /*
+         * front가 rear보다 앞에 있을 경우 (또는 요소가 없을 경우 f==r)
+         *  ______________________
+         *  |  |  |  |  |  |  |  |
+         *  ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ
+         *    	f        r
+         */
+        if(front <= rear) {
+            System.arraycopy(array, front + 1, a, 0, size);
+        }
+
+
+        /*
+         * front가 rear보다 뒤에 있을 경우
+         *  ______________________
+         *  |  |  |  |  |  |  |  |
+         *  ˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉˉ
+         *    	r        f
+         */
+        else {
+
+            int rearlength = array.length - 1 - front;	// 뒷 부분의 요소 개수
+
+            // 뒷 부분 복사
+            if(rearlength > 0) {
+                System.arraycopy(array, front + 1, a, 0, rearlength);
+            }
+            // 앞 부분 복사
+            System.arraycopy(array, 0, a, rearlength, rear + 1);
+        }
+
+        return a;
+    }
+
+    @Override
+    public Object clone() {
+
+        // super.clone() 은 CloneNotSupportedException 예외를 처리해주어야 한다.
+        try {
+
+            @SuppressWarnings("unchecked")
+            ArrayQueue<E> clone = (ArrayQueue<E>) super.clone();// 새로운 큐 객체 생성
+
+            // 새로운 큐의 배열도 생성해주어야 함 (내부 객체는 깊은 복사가 되지 않기 때문)
+            clone.array = Arrays.copyOf(array, array.length);
+            return clone;
+        }
+        catch(CloneNotSupportedException e) {
+            throw new Error(e);	// 예외처리는 여러분들이 자유롭게 구성하면 된다.
+        }
+    }
+
+    public void sort() {
+        /**
+         *  Comparator를 넘겨주지 않는 경우 해당 객체의 Comparable에 구현된
+         *  정렬 방식을 사용한다.
+         *  만약 구현되어있지 않으면 cannot be cast to class java.lang.Comparable
+         *  에러가 발생한다.
+         *  만약 구현되어있을 경우 null로 파라미터를 넘기면
+         *  Arrays.sort()가 객체의 compareTo 메소드에 정의된 방식대로 정렬한다.
+         */
+        sort(null);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void sort(Comparator<? super E> c) {
+
+        // null 접근 방지를 위해 toArray로 요소만 있는 배열을 얻어 이를 정렬한뒤 덮어씌운다.
+        Object[] res = toArray();
+
+        Arrays.sort((E[]) res, 0, size, c);
+
+        clear();
+        /*
+         *  정렬된 원소를 다시 array에 0부터 차례대로 채운다.
+         *  이 때 front = 0 인덱스는 비워야 하므로 사실상 1번째 인덱스부터 채워야 한다.
+         *가득 차있는 경우는 (rear + 1) % array.length == front
+         *
+즉, 가득 차있는 경우는 말을 가득차있다고 표현했지만 큐에 들어있는 원소의 개수가 array.length 보다 한개 적은경우 맞나요?
+         *
+         */
+        System.arraycopy(res, 0, array, 1, res.length);	// res 배열을 array에 복사
+
+        this.rear = this.size = res.length;
+
+    }
+
+
+
 }
