@@ -73,6 +73,11 @@ public class LinkedListDeque<E> implements Queue<E> {
         return pollLast();
     }
 
+    @Override
+    public E peek() {
+        return null;
+    }
+
     public E pollLast() {
         if (size == 0)
             return null;

@@ -1,7 +1,5 @@
 package java_class.basic_class.interface_ex.multi_extends;
 
-import javax.swing.*;
-
 public class TV {
 
     protected boolean power;
