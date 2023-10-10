@@ -35,7 +35,7 @@ public class WildCard_class {
 //        List<Object> list3 = new ArrayList<>();
 //        List<String> list4 = new ArrayList<>();
 
-        test2.test_method(list1);
+//        test2.test_method(list1);
 //        Test.static_test_method(list1);
 //        Test.static_test_method(list2);
 //        Test.static_test_method(list3);
