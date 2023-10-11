@@ -17,24 +17,17 @@ public class WildCard_class {
 //    static class Test<? extends T> {}
 
     static class Test<T> {
-        public void extends_method(List<? extends T> list) {
+        public void extends_method(List<? extends T> list) {}
 
-        }
-
-        public void super_method(List<? super T> list) {
-
-        }
+        public void super_method(List<? super T> list) {}
 
         public void generic_method(List<T> list) {}
 
-        public static <E> void static_generic_method(List<? extends E> list) {
-
-        }
+        public static <E> void static_generic_method(List<? extends E> list) {}
     }
 
     public static void main(String[] args) {
 
-//        Test<?> test1 = new Test<String>();
         Test<? extends Fruit> extends_fruit_list = new Test<Apple>();
         Test<? super Fruit> super_fruit_list = new Test<Food>();
         Test<Fruit> fruit_list = new Test<>();
@@ -45,62 +38,61 @@ public class WildCard_class {
         List<? super Fruit> super_fruit = new ArrayList<>();
         List<Apple> apple = new ArrayList<>();
         List<Food> food = new ArrayList<>();
-//        List<String> list4 = new ArrayList<>();
 
-        extends_fruit_list.extends_method(fruit);
-        extends_fruit_list.extends_method(extends_fruit);
-        extends_fruit_list.extends_method(super_fruit);
-        extends_fruit_list.extends_method(food);
-        extends_fruit_list.extends_method(apple);
+//        extends_fruit_list.extends_method(fruit);
+//        extends_fruit_list.extends_method(extends_fruit);
+//        extends_fruit_list.extends_method(super_fruit);
+//        extends_fruit_list.extends_method(food);
+//        extends_fruit_list.extends_method(apple);
+//
+//        extends_fruit_list.super_method(fruit);
+//        extends_fruit_list.super_method(extends_fruit);
+//        extends_fruit_list.super_method(super_fruit);
+//        extends_fruit_list.super_method(food);
+//        extends_fruit_list.super_method(apple);
+//
+//        extends_fruit_list.generic_method(fruit);
+//        extends_fruit_list.generic_method(extends_fruit);
+//        extends_fruit_list.generic_method(super_fruit);
+//        extends_fruit_list.generic_method(food);
+//        extends_fruit_list.generic_method(apple);
 
-        extends_fruit_list.super_method(fruit);
-        extends_fruit_list.super_method(extends_fruit);
-        extends_fruit_list.super_method(super_fruit);
-        extends_fruit_list.super_method(food);
-        extends_fruit_list.super_method(apple);
 
-        extends_fruit_list.generic_method(fruit);
-        extends_fruit_list.generic_method(extends_fruit);
-        extends_fruit_list.generic_method(super_fruit);
-        extends_fruit_list.generic_method(food);
-        extends_fruit_list.generic_method(apple);
-
-
-        super_fruit_list.extends_method(fruit);
-        super_fruit_list.extends_method(extends_fruit);
-        super_fruit_list.extends_method(super_fruit);
-        super_fruit_list.extends_method(food);
-        super_fruit_list.extends_method(apple);
-
-        super_fruit_list.super_method(fruit);
-        super_fruit_list.super_method(extends_fruit);
-        super_fruit_list.super_method(super_fruit);
-        super_fruit_list.super_method(food);
-        super_fruit_list.super_method(apple);
-
-        super_fruit_list.generic_method(fruit);
-        super_fruit_list.generic_method(extends_fruit);
-        super_fruit_list.generic_method(super_fruit);
-        super_fruit_list.generic_method(food);
-        super_fruit_list.generic_method(apple);
-
-        fruit_list.extends_method(fruit);
-        fruit_list.extends_method(extends_fruit);
-        fruit_list.extends_method(super_fruit);
-        fruit_list.extends_method(food);
-        fruit_list.extends_method(apple);
-
-        fruit_list.super_method(fruit);
-        fruit_list.super_method(extends_fruit);
-        fruit_list.super_method(super_fruit);
-        fruit_list.super_method(food);
-        fruit_list.super_method(apple);
-
-        fruit_list.generic_method(fruit);
-        fruit_list.generic_method(extends_fruit);
-        fruit_list.generic_method(super_fruit);
-        fruit_list.generic_method(food);
-        fruit_list.generic_method(apple);
+//        super_fruit_list.extends_method(fruit);
+//        super_fruit_list.extends_method(extends_fruit);
+//        super_fruit_list.extends_method(super_fruit);
+//        super_fruit_list.extends_method(food);
+//        super_fruit_list.extends_method(apple);
+//
+//        super_fruit_list.super_method(fruit);
+//        super_fruit_list.super_method(extends_fruit);
+//        super_fruit_list.super_method(super_fruit);
+//        super_fruit_list.super_method(food);
+//        super_fruit_list.super_method(apple);
+//
+//        super_fruit_list.generic_method(fruit);
+//        super_fruit_list.generic_method(extends_fruit);
+//        super_fruit_list.generic_method(super_fruit);
+//        super_fruit_list.generic_method(food);
+//        super_fruit_list.generic_method(apple);
+//
+//        fruit_list.extends_method(fruit);
+//        fruit_list.extends_method(extends_fruit);
+//        fruit_list.extends_method(super_fruit);
+//        fruit_list.extends_method(food);
+//        fruit_list.extends_method(apple);
+//
+//        fruit_list.super_method(fruit);
+//        fruit_list.super_method(extends_fruit);
+//        fruit_list.super_method(super_fruit);
+//        fruit_list.super_method(food);
+//        fruit_list.super_method(apple);
+//
+//        fruit_list.generic_method(fruit);
+//        fruit_list.generic_method(extends_fruit);
+//        fruit_list.generic_method(super_fruit);
+//        fruit_list.generic_method(food);
+//        fruit_list.generic_method(apple);
 
 
 //        Test.static_generic_method(list1);
