@@ -87,5 +87,19 @@ public class PasswordStrengthMeterTest {
         assertStrength("abdefghi", PasswordStrength.WEAK);
     }
 
+    @Test
+    void meetsOnlyNumCriteria_Then_Weak() {
+        assertStrength("12345", PasswordStrength.WEAK);
+    }
+
+    @Test
+    void meetsOnlyUpperCriteria_Then_Weak() {
+        assertStrength("ABZEF", PasswordStrength.WEAK);
+    }
+
+    @Test
+    void meetsNoCriteria_Then_Weak() {
+        assertStrength("abc", PasswordStrength.WEAK);
+    }
     //TODO ======1개 또는 모두 불 충족[1 or 0]====== end
 }
