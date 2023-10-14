@@ -1,4 +1,4 @@
-package Junit_test.chap02;
+package Junit_test.chap02.test;
 
 import Junit_test.chap02.password.PasswordStrength;
 import Junit_test.chap02.password.PasswordStrengthMeter;
