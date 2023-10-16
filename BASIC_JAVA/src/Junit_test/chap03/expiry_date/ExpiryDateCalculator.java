@@ -5,6 +5,8 @@ import java.time.YearMonth;
 
 public class ExpiryDateCalculator {
 
+    final int PAY_OF_YEAR = 100_000;
+
 //    public LocalDate calculateExpiryDate(LocalDate billingDate, int payAmount) {
 ////        return LocalDate.of(2019,4,1);
 ////        return billingDate.plusMonths(1);
@@ -69,8 +71,8 @@ public class ExpiryDateCalculator {
 //            return payData.getBillingDate().plusMonths(addedMonths);
 //        }
 
+        int addedMonths = calcAddedMonths(payData.getPaymentAmount());
 
-        int addedMonths = payData.getPaymentAmount() == 100_000 ?  12: payData.getPaymentAmount() / 10_000;
         if(payData.getFirstBillingDate() != null) {
             return this.expiryDateUsingFirstBillingDate(payData, addedMonths);
         } else {
@@ -136,5 +138,21 @@ public class ExpiryDateCalculator {
      */
     private int lastDayOfMonth(LocalDate date) {
         return YearMonth.from(date).lengthOfMonth();
+    }
+
+    private boolean isPayOfYear(int payment) {
+        return payment >= PAY_OF_YEAR;
+    }
+
+    private int calcAddedMonths(int payment) {
+        final int payOfMonth = 10_000;
+
+        if(isPayOfYear(payment)) {
+            final int restOfMonths = payment - PAY_OF_YEAR;
+            return 12 + (restOfMonths / payOfMonth);
+        } else {
+            return payment / payOfMonth;
+        }
+
     }
 }
