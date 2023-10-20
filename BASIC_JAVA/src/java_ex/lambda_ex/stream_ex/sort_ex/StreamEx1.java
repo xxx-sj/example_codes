@@ -45,7 +45,7 @@ public class StreamEx1 {
                 .forEach(System.out::println);
     }
 
-    static class Student implements Comparable<Student> {
+    public static class Student implements Comparable<Student> {
         String name;
         int ban;
         int totalScore;
