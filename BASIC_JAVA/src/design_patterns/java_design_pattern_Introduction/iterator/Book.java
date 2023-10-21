@@ -1,4 +1,4 @@
-package design_patterns.head_first_design_patterns.iterator;
+package design_patterns.java_design_pattern_Introduction.iterator;
 
 public class Book {
     private String name;
