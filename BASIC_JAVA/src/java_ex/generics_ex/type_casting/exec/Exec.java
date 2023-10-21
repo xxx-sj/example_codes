@@ -11,7 +11,7 @@ public class Exec {
 
     public static void main(String[] args) {
         //MarkerPencil upcasting
-        Set<Writable> writableSet = new ClassBox().getClass(Writable.class);
+        Set<Writable> writableSet = new ClassBox().<Writable>getClass(Writable.class);
         writableSet.add(new Pencil());
         writableSet.add(new MarkerPencil());
 
