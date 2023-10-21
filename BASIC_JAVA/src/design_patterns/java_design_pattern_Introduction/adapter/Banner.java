@@ -1,4 +1,4 @@
-package design_patterns.java_design_pattern_Introduction.adapter.by_interface;
+package design_patterns.java_design_pattern_Introduction.adapter;
 
 public class Banner {
     private String string;
