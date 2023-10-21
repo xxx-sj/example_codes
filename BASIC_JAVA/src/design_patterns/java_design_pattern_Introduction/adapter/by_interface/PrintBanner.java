@@ -1,4 +1,4 @@
-package design_patterns.java_design_pattern_Introduction.adapter;
+package design_patterns.java_design_pattern_Introduction.adapter.by_interface;
 
 public class PrintBanner extends Banner implements Print {
     public PrintBanner(String string) {
