@@ -1,9 +1,10 @@
 package Junit_test.chap07.card_valid.test;
 
 import Junit_test.chap07.card_valid.AutoDebitRegister;
-import Junit_test.chap07.card_valid.req.AutoDebitReq;
 import Junit_test.chap07.card_valid.CardValidity;
 import Junit_test.chap07.card_valid.RegisterResult;
+import Junit_test.chap07.card_valid.repository.StubAutoDebitInfoRepository;
+import Junit_test.chap07.card_valid.req.AutoDebitReq;
 import Junit_test.chap07.card_valid.validator.stub.StubCardNumberValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
