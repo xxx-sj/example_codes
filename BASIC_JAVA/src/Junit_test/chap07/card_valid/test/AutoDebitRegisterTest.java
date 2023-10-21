@@ -4,6 +4,7 @@ import Junit_test.chap07.card_valid.AutoDebitRegister;
 import Junit_test.chap07.card_valid.CardValidity;
 import Junit_test.chap07.card_valid.RegisterResult;
 import Junit_test.chap07.card_valid.repository.AutoDebitInfoRepository;
+import Junit_test.chap07.card_valid.repository.JpaAutoDebitInfoRepository;
 import Junit_test.chap07.card_valid.req.AutoDebitReq;
 import Junit_test.chap07.card_valid.validator.CardNumberValidator;
 import org.junit.jupiter.api.Assertions;
