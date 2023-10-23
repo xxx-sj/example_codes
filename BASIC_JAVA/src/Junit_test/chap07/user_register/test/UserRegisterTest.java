@@ -42,4 +42,17 @@ public class UserRegisterTest {
             userRegister.register("id", "pwd2", "email");
         });
     }
+
+    @DisplayName("중복이 없으면 가입 성공")
+    @Test
+    void noDupId_RegisterSuccess() {
+        //given
+        userRegister.register("id", "pwd", "email");
+        //when
+        User savedUser = fakeRepository.findById("id"); //가입결과 확인
+
+        //then
+        Assertions.assertEquals("id", savedUser.getId());
+        Assertions.assertEquals("email", savedUser.getEmail());
+    }
 }
