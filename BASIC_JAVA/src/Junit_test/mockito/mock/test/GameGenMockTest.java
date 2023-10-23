@@ -1,7 +1,7 @@
 package Junit_test.mockito.mock.test;
 
-import Junit_test.mockito.mock.GameLevel;
-import Junit_test.mockito.mock.GameNumGen;
+import Junit_test.mockito.GameLevel;
+import Junit_test.mockito.GameNumGen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

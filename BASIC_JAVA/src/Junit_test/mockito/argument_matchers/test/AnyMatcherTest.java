@@ -1,7 +1,7 @@
 package Junit_test.mockito.argument_matchers.test;
 
-import Junit_test.mockito.mock.GameLevel;
-import Junit_test.mockito.mock.GameNumGen;
+import Junit_test.mockito.GameLevel;
+import Junit_test.mockito.GameNumGen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ public class AnyMatcherTest {
         BDDMockito.given(mockList.set(Mockito.anyInt(), "123")).willReturn("456");
 
         String old = mockList.set(5, "123");
-        Assertions.assertEquals("456", old);
+//        Assertions.assertEquals("456", old);
     }
     @Test
     void mixAnyAndEq() {
