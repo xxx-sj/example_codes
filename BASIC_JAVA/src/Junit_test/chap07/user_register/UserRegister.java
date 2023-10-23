@@ -1,5 +1,6 @@
 package Junit_test.chap07.user_register;
 
+import Junit_test.chap07.user_register.exception.DupIdException;
 import Junit_test.chap07.user_register.exception.WeakPasswordException;
 import Junit_test.chap07.user_register.repository.MemoryUserRepository;
 import Junit_test.chap07.user_register.repository.UserRepository;
@@ -21,5 +22,12 @@ public class UserRegister {
         if (passwordChecker.checkPasswordWeak(pw)) {
             throw new WeakPasswordException();
         }
+
+        User user = userRepository.findById(id);
+        if(user != null) {
+            throw new DupIdException();
+        }
+
+
     }
 }

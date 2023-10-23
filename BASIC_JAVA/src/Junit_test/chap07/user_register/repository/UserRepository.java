@@ -4,5 +4,7 @@ import Junit_test.chap07.user_register.User;
 
 public interface UserRepository {
 
-    public void save(User user);
+    void save(User user);
+
+    User findById(String id);
 }
