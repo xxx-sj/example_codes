@@ -1,4 +1,4 @@
-package Junit_test.mockito.mock;
+package Junit_test.mockito;
 
 public interface GameNumGen {
     String generate(GameLevel level);
