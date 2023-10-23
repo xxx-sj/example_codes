@@ -1,5 +1,6 @@
 package Junit_test.chap07.user_register.test;
 
+import Junit_test.chap07.user_register.SpyEmailNotifier;
 import Junit_test.chap07.user_register.StubWeakPasswordChecker;
 import Junit_test.chap07.user_register.User;
 import Junit_test.chap07.user_register.UserRegister;
@@ -15,10 +16,11 @@ public class UserRegisterTest {
     private UserRegister userRegister;
     private StubWeakPasswordChecker stubPasswordChecker = new StubWeakPasswordChecker();
     private MemoryUserRepository fakeRepository = new MemoryUserRepository();
+    private SpyEmailNotifier spyEmailNotifier = new SpyEmailNotifier();
 
     @BeforeEach
     void setUp() {
-        userRegister = new UserRegister(stubPasswordChecker, fakeRepository);
+        userRegister = new UserRegister(stubPasswordChecker, fakeRepository, spyEmailNotifier);
     }
 
     @DisplayName("약한 암호면 가입 실패")
@@ -54,5 +56,14 @@ public class UserRegisterTest {
         //then
         Assertions.assertEquals("id", savedUser.getId());
         Assertions.assertEquals("email", savedUser.getEmail());
+    }
+
+    @DisplayName("가입하면 메일을 전송함")
+    @Test
+    void whenRegisterThenSendMail() {
+        userRegister.register("id", "pw", "email@email.com");
+
+        Assertions.assertTrue(spyEmailNotifier.isCalled());
+        Assertions.assertEquals("email@email.com", spyEmailNotifier.getEmail());
     }
 }

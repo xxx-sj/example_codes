@@ -8,14 +8,16 @@ import Junit_test.chap07.user_register.repository.UserRepository;
 public class UserRegister {
     private WeakPasswordChecker passwordChecker;
     private UserRepository userRepository;
+    private EmailNotifier emailNotifier;
 
     public UserRegister(WeakPasswordChecker passwordChecker) {
         this.passwordChecker = passwordChecker;
     }
 
-    public UserRegister(StubWeakPasswordChecker passwordChecker, MemoryUserRepository userRepository) {
+    public UserRegister(StubWeakPasswordChecker passwordChecker, MemoryUserRepository userRepository, EmailNotifier emailNotifier) {
         this.passwordChecker = passwordChecker;
         this.userRepository = userRepository;
+        this.emailNotifier = emailNotifier;
     }
 
     public void register(String id, String pw, String email) {
@@ -29,7 +31,6 @@ public class UserRegister {
         }
 
         userRepository.save(new User(id, pw, email));
-
-
+        emailNotifier.sendRegisterEmail(email);
     }
 }
