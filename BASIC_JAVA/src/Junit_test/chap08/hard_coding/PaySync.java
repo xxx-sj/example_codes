@@ -9,13 +9,15 @@ import java.util.stream.Collectors;
 
 public class PaySync {
     private String filePath = "D://data/pay/cp0001.csv";
-    private PayInfoDao playInfoDao = new PayInfoDao();
+    //구현 클래스를 인터페이스로 변경하고 setter or 생성자로 받는다.
+    private PayInfoDao payInfodao;
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public PaySync(PayInfoDao payInfodao) {
+        this.payInfodao = payInfodao;
     }
 
     //setter 또는 인자를 통해 filepath를 받을 수 있다.
+
     public void sync() throws IOException {
         Path path = Paths.get(filePath);
         List<PayInfo> payInfos = Files.lines(path)
@@ -28,6 +30,10 @@ public class PaySync {
                 })
                 .collect(Collectors.toList());
 
-        payInfos.forEach(pi -> PayInfoDao.insert(pi));
+        payInfos.forEach(pi -> payInfodao.insert(pi));
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }
