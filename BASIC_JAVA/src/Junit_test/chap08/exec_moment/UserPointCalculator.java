@@ -1,5 +1,8 @@
 package Junit_test.chap08.exec_moment;
 
+import Junit_test.chap08.exec_moment.repository.ProductDao;
+import Junit_test.chap08.exec_moment.repository.SubscriptionDao;
+
 import java.time.LocalDate;
 
 public class UserPointCalculator {
