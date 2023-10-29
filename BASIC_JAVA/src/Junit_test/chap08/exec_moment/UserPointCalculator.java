@@ -6,9 +6,15 @@ public class UserPointCalculator {
     private SubscriptionDao subscriptionDao;
     private ProductDao productDao;
 
+    private PointRule pointRule = new PointRule();
+
     public UserPointCalculator(SubscriptionDao subscriptionDao, ProductDao productDao) {
         this.subscriptionDao = subscriptionDao;
         this.productDao = productDao;
+    }
+
+    public void setPointRule(PointRule pointRule) {
+        this.pointRule = pointRule;
     }
 
     public int calculatePoint(User u) {
@@ -17,6 +23,6 @@ public class UserPointCalculator {
         Product p = productDao.selectById(s.getProductId());
         LocalDate now = LocalDate.now();
 
-        return new PointRule().calculate(s, p, now);
+        return pointRule.calculate(s, p, now);
     }
 }
