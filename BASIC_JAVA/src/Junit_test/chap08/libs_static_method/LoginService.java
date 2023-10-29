@@ -2,14 +2,15 @@ package Junit_test.chap08.libs_static_method;
 
 public class LoginService {
     private CustomerRepository customerRepository;
-    private AuthService authService = new AuthService();
+    private AuthService authService;
 
-    public void setAuthService(AuthService authService) {
-        this.authService = authService;
-    }
+//    public void setAuthService(AuthService authService) {
+//        this.authService = authService;
+//    }
 
-    public LoginService (CustomerRepository customerRepository) {
+    public LoginService (CustomerRepository customerRepository, AuthService authService) {
         this.customerRepository = customerRepository;
+        this.authService = authService;
     }
 
     public LoginResult login(String id, String pw) {
