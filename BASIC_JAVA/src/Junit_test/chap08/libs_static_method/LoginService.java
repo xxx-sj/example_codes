@@ -1,22 +1,19 @@
 package Junit_test.chap08.libs_static_method;
 
 public class LoginService {
-    private String authKey = "someKey";
     private CustomerRepository customerRepository;
+    private AuthService authService = new AuthService();
+
+    public void setAuthService(AuthService authService) {
+        this.authService = authService;
+    }
 
     public LoginService (CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
     public LoginResult login(String id, String pw) {
-        int resp = 0;
-        boolean authorized = AuthUtils.authorize(authKey);
-
-        if(authorized) {
-            resp = AuthUtils.authenticate(id, pw);
-        } else {
-            resp = -1;
-        }
+        int resp = authService.authenticate(id, pw);
 
         if(resp == - 1) return LoginResult.badAuthKey();
 
