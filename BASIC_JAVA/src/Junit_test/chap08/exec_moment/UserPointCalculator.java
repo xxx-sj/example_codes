@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class UserPointCalculator {
     private SubscriptionDao subscriptionDao;
     private ProductDao productDao;
-
     private PointRule pointRule = new PointRule();
+    private Times times = new Times();
 
     public UserPointCalculator(SubscriptionDao subscriptionDao, ProductDao productDao) {
         this.subscriptionDao = subscriptionDao;
@@ -17,11 +17,15 @@ public class UserPointCalculator {
         this.pointRule = pointRule;
     }
 
+    public void setTimes(Times times) {
+        this.times = times;
+    }
+
     public int calculatePoint(User u) {
         Subscription s = subscriptionDao.selectByUser(u.getId());
         if(s == null) throw new NoSubscriptionException();
         Product p = productDao.selectById(s.getProductId());
-        LocalDate now = LocalDate.now();
+        LocalDate now = times.today();
 
         return pointRule.calculate(s, p, now);
     }
