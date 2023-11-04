@@ -11,5 +11,6 @@
     <orderEntry type="library" exported="" name="junit.jupiter" level="project" />
     <orderEntry type="library" name="mockito.core" level="project" />
     <orderEntry type="library" name="mockito.junit.jupiter" level="project" />
+    <orderEntry type="library" name="wiremock-standalone-3.3.1" level="project" />
   </component>
 </module>
